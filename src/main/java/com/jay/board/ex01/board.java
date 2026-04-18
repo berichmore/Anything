@@ -40,6 +40,8 @@ public class board {
                 article.content = content;
 
                 System.out.println("생성된 게시물 객체 : " + article);
+                // 내가 넣은 값이 주소값으로 나오면 보기 불편하니 toString을 쓰자
+                System.out.println("생성된 게시물 객체 toString: " + article.toString());
                 System.out.println("생성된 게시물 스레드 : " + Thread.currentThread().getName());
 
                 System.out.printf("%d번 게시물이 등록되었습니다.", id);
