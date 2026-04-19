@@ -23,7 +23,7 @@ public class Board {
         System.out.println("== 자바 게시판 시작 == ");
 
         while(true) {
-            System.out.print("명령 ");
+            System.out.print("명령 :  ");
             String cmd = sc.nextLine();
 
             if(cmd.equals("/user/article/write")) {
@@ -38,10 +38,9 @@ public class Board {
                 int id = ++lastId;
 
                 // Article 객체 생성
-                Article article = new Article();
-                article.id = id;
-                article.title = title;
-                article.content = content;
+                Article article = new Article(id,title,content);
+                // 객체가 생성되자마자 id, title, content를 품고 태어낫으면 좋겠다? -> 생성자 필요
+                // 이렇게 () 안에 넣으려면 생성자 필요
 
                 System.out.println("생성된 게시물 객체 : " + article);
                 // 내가 넣은 값이 주소값으로 나오면 보기 불편하니 toString을 쓰자
