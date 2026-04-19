@@ -53,7 +53,30 @@ public class Board {
 
 
                 System.out.printf("%d번 게시물이 등록되었습니다.", id);
-            } else if(cmd.startsWith("/user/article/detail")) {
+
+            } else if(cmd.equals("/user/article/list")) {
+                if (articles.isEmpty()) {
+                    System.out.println("게시물이 존재하지 않습니다.");
+                    continue;
+                }
+
+
+                // 오름차순 출력
+                System.out.println("== 게시물 리스트 == ");
+                System.out.println("번호 | 제목");
+
+                for (Article article : articles) {
+                    System.out.printf("%d | %s\n", article.id, article.title);
+                }
+
+
+//                System.out.printf("== %d번 게시물 상세보기 == \n", findArticle.id);
+//                System.out.printf("번호: %s\n", findArticle.id);
+//                System.out.printf("제목: %s\n", findArticle.title);
+//                System.out.printf("내용: %s\n", findArticle.content);
+
+            }
+            else if(cmd.startsWith("/user/article/detail")) {
                 System.out.println("== 게시물 상세보기 ==");
 
                 String[] urlBits =  cmd.trim().split("/");
@@ -78,15 +101,6 @@ public class Board {
                     continue;
                 }
 
-                // --
-
-                // '/ ' 를 기준으로 데이터 쪼갠다.
-
-
-
-                // Q) List에 저장된 마지막 게시물을 가져오는 방법은??
-
-                // java 21 이상은 getLast로 대체 가능
 
 
                 // 내가 입력한 id와 리스트 내부에 있는 게시물 객체의 id랑 일치한 객체만 필터링
@@ -94,20 +108,11 @@ public class Board {
                 int finalId = id;
 
                 Article findArticle = articles.stream()
-                                .filter(article -> article.id == finalId)
-                                        .findFirst().orElse(null);
+                        .filter(article -> article.id == finalId)
+                        .findFirst().orElse(null);
                 // 찾으면 찾은 것 중 첫 번째 것을 리턴, 못 찾으면 null 반환
 
-                // 일반적 for문
-//                Article findArticle = null;
-//                for (int i = 0; i < articles.size(); i++) {
-//                    Article article = articles.get(i);
-//
-//                    if( article.id == id) {
-//                        findArticle = article;
-//                        break;
-//                    }
-//                }
+
                 if (findArticle == null) {
                     System.out.println("해당 게시물은 존재하지 않습니다.");
                     continue;
@@ -118,7 +123,7 @@ public class Board {
                 System.out.printf("제목: %s\n", findArticle.title);
                 System.out.printf("내용: %s\n", findArticle.content);
 
-            } else if (cmd.equals("exit")){
+            }else if (cmd.equals("exit")){
                 System.out.println(" 프로그램을 종료합니다.");
                 break;
             } else {
