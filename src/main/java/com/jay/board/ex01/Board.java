@@ -26,9 +26,13 @@ public class Board {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Article> articles = new ArrayList<>();
-        int lastId = 0;
+
+
 
         makeArticleTestData(articles);
+
+        int lastId = articles.get(articles.size() - 1 ).id;
+//        int lastId = 0;
 
 
         System.out.println("== 자바 게시판 시작 == ");
@@ -134,7 +138,7 @@ public class Board {
 
 
                 if (findArticle == null) {
-                    System.out.println("해당 게시물은 존재하지 않습니다.");
+                    System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
                     continue;
                 }
 
