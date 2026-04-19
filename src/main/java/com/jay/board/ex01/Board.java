@@ -61,19 +61,28 @@ public class Board {
                 }
 
 
-                // 오름차순 출력
                 System.out.println("== 게시물 리스트 == ");
                 System.out.println("번호 | 제목");
 
+                /*
+
+                // 오름차순
+                // v1 : 향상된 for문 사용
                 for (Article article : articles) {
+                    System.out.printf("%d | %s\n", article.id, article.title);
+                }
+                // v2 : forEach 문 사용
+                articles.forEach(
+                        article -> System.out.println("%d | %s\n", article.id, article.title);
+                 */
+
+                // 내림차순 출력
+                for(int i = articles.size() - 1; i >= 0; i--) {
+                    Article article = articles.get(i);
                     System.out.printf("%d | %s\n", article.id, article.title);
                 }
 
 
-//                System.out.printf("== %d번 게시물 상세보기 == \n", findArticle.id);
-//                System.out.printf("번호: %s\n", findArticle.id);
-//                System.out.printf("제목: %s\n", findArticle.title);
-//                System.out.printf("내용: %s\n", findArticle.content);
 
             }
             else if(cmd.startsWith("/user/article/detail")) {
