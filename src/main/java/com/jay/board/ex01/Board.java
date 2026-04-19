@@ -20,6 +20,13 @@ public class Board {
         List<Article> articles = new ArrayList<>();
         int lastId = 0;
 
+        // 게시물 테스트 데이터 구현 시작 테스트 데이터
+        articles.add(new Article(1, "제목1","내용1"));
+        articles.add(new Article(2, "제목2","내용2"));
+        articles.add(new Article(3, "제목3","내용3"));
+        // 게시물 테스트 데이터 구현 끝
+
+
         System.out.println("== 자바 게시판 시작 == ");
 
         while(true) {
