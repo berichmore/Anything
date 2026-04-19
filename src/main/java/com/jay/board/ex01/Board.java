@@ -9,6 +9,7 @@ package com.jay.board.ex01;
 
 import com.jay.board.domain.article.Article;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Board {
@@ -51,8 +52,24 @@ public class Board {
 
 
                 System.out.printf("%d번 게시물이 등록되었습니다.", id);
-            } else if(cmd.equals("/user/article/detail")) {
+            } else if(cmd.startsWith("/user/article/detail")) {
                 System.out.println("== 게시물 상세보기 ==");
+
+                String[] urlBits =  cmd.trim().split("/");
+                System.out.println(Arrays.toString(urlBits));
+                // ====
+                if (urlBits.length < 5) {
+                    System.out.println("/detail/ 글 번호를 입력해주세요");
+                    continue;
+                }
+
+                // --
+
+                // '/ ' 를 기준으로 데이터 쪼갠다.
+
+                int id = Integer.parseInt(urlBits[4]);
+
+
 
                 Article article = lastArticle;
 
