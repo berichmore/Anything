@@ -13,18 +13,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Board {
+     static void makeArticleTestData(List<Article> articles) {
+         IntStream.rangeClosed(1, 5)
+                 .forEach(
+                         i -> articles.add(new Article(i, "제목" + i, "내용" + i))
+                 );
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Article> articles = new ArrayList<>();
         int lastId = 0;
 
-        // 게시물 테스트 데이터 구현 시작 테스트 데이터
-        articles.add(new Article(1, "제목1","내용1"));
-        articles.add(new Article(2, "제목2","내용2"));
-        articles.add(new Article(3, "제목3","내용3"));
-        // 게시물 테스트 데이터 구현 끝
+        makeArticleTestData(articles);
 
 
         System.out.println("== 자바 게시판 시작 == ");
@@ -150,4 +154,6 @@ public class Board {
         System.out.println("게시판 종료");
         sc.close();
     }
+
+
 }
