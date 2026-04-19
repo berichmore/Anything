@@ -9,13 +9,15 @@ package com.jay.board.ex01;
 
 import com.jay.board.domain.article.Article;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Board {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Article lastArticle = null;
+        List<Article> articles = new ArrayList<>();
         int lastId = 0;
 
         System.out.println("== 자바 게시판 시작 == ");
@@ -47,8 +49,8 @@ public class Board {
                 System.out.println("생성된 게시물 스레드 : " + Thread.currentThread().getName());
 
                 // 생성된 게시물 객체를 공유
-                lastArticle = article;
 
+                articles.add(article);
 
 
                 System.out.printf("%d번 게시물이 등록되었습니다.", id);
@@ -63,6 +65,11 @@ public class Board {
                     continue;
                 }
 
+                if (articles.isEmpty()) {
+                    System.out.println("게시물이 존재하지 않습니다.");
+                    continue;
+                }
+
                 // --
 
                 // '/ ' 를 기준으로 데이터 쪼갠다.
@@ -70,8 +77,10 @@ public class Board {
                 int id = Integer.parseInt(urlBits[4]);
 
 
+                // Q) List에 저장된 마지막 게시물을 가져오는 방법은??
 
-                Article article = lastArticle;
+                Article article = articles.get(articles.size() -1);
+                // java 21 이상은 getLast로 대체 가능
 
                 if (article == null) {
                     System.out.println("해당 게시물은 존재하지 않습니다.");
