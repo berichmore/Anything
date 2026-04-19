@@ -11,9 +11,10 @@ import com.jay.board.domain.article.Article;
 
 import java.util.Scanner;
 
-public class board {
+public class Board {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Article lastArticle = null;
         int lastId = 0;
 
         System.out.println("== 자바 게시판 시작 == ");
@@ -44,13 +45,34 @@ public class board {
                 System.out.println("생성된 게시물 객체 toString: " + article.toString());
                 System.out.println("생성된 게시물 스레드 : " + Thread.currentThread().getName());
 
+                // 생성된 게시물 객체를 공유
+                lastArticle = article;
+
+
+
                 System.out.printf("%d번 게시물이 등록되었습니다.", id);
-            } else if(cmd.equals("exit")) {
-                System.out.println("프로그램을 종료합니다.");
+            } else if(cmd.equals("/user/article/detail")) {
+                System.out.println("== 게시물 상세보기 ==");
+
+                Article article = lastArticle;
+
+                if (article == null) {
+                    System.out.println("해당 게시물은 존재하지 않습니다.");
+                    continue;
+                }
+
+                System.out.printf("== %d번 게시물 상세보기 ==\n", article.id);
+                System.out.printf("번호: %s\n", article.id);
+                System.out.printf("제목: %s\n", article.title);
+                System.out.printf("내용: %s\n", article.content);
+
+            } else if (cmd.equals("exit")){
+                System.out.println(" 프로그램을 종료합니다.");
                 break;
-            } else{
+            } else {
                 System.out.println(" 다시 입력해주세요/");
             }
+
         }
         System.out.println("게시판 종료");
         sc.close();
